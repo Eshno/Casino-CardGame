@@ -1,0 +1,71 @@
+Casino can be played from 2 up to 4 players.
+
+We must deal cards to 2-4 players. 
+
+We must deal 4 cards to each player and 4 to the middle.
+
+Card values:
+King = 13
+Queen = 12
+Jack = 11
+2 - 10 
+Ace = 1
+
+52 cards in total.
+
+
+Each card has a type (Spade, Heart, Diamond, Club)
+There's one of each card in every card type.
+
+
+***Objective:
+Obtain the highest score.
+
+***Score:
+Most Cards = 3 points
+Most Spades = 1 point
+Big Casino (10 diamond) = 2 points 
+Little Casino (2 spade) = 1 point
+Each Ace = 1 point
+
+***Playing:
+You must take a card from the middle, its value must be equal to the value of one of your cards.
+Example: If you have a 7. and there's a 7 in the middle, then you can take it.
+Also If you have a 7, and there is a 4 and a 3, you can take both.
+Else, if you can't play the hand, then you must place a card in the middle.
+
+At the end of the game, when there are no more cards to deal, the player that took cards in last 
+will take the remaining cards in the middle.
+
+***Combinations:
+
+*Build Combination:
+
+The player must announce if he is building or calling/pairing.
+
+This works this way: if there's for example an 6 in the middle, and you have a 2 and an 8, you can 
+place the 2 in order to build an 8 from that combination of (6 & 2).
+
+Basically, this consist that you can place a card over another to add both their values.
+
+
+Any player can take the combinated cards if they got a card that has the same value as
+the combinated cards.
+
+You can combine as many cards as you want, but their value can't exceed 10. (At least that's how im gonna do it)
+
+*Call/Pair Combination:
+
+The player must announce if he is building or calling.
+
+The player places a card of his deck that has the same value of one in the middle.
+Ex: If there's an 8 in both your deck and the middle, you can place the 8 on top of the 8 in the middle.
+The Called cards can be claimed by having a card of the same value. (In order to claim  called 8 & 8, you must have an 8).
+
+This also can be played this way: if there's a 7 and a 5 in the middle, and you got an 8 in your deck, you can 
+combinate both 5 and 2 to make a 7 and do a call combination on top of the 7.
+
+
+
+
+
