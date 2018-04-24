@@ -5,7 +5,7 @@ card_type = ["Diamonds", "Spades", "Hearts", "Clubs"]
 deck = []
 
 players = {}
-middle = []
+middle = {"Main": [], "Paired": [],"Combined": []}
 hasBegun = True
 
 amount = input("Ingrese cantidad de Jugadores: ")
@@ -67,7 +67,7 @@ def Deal(deck, amount,hasBegun):
         players["player"+str(i)]["Cards"] = Deal_Cards(players["player"+str(i)]["Cards"], deck)
 
     if hasBegun:
-        Deal_Cards(middle, deck)
+        Deal_Cards(middle["Main"], deck)
         hasBegun = False
     
 
@@ -80,9 +80,8 @@ Deal(deck,amount,hasBegun)
 """
 for i in range (1,len(players) + 1):
     print "player"+str(i)
-    print players["player"+str(i)]
-print "Middle: ", middle
-"""   
+    print players["player"+str(i)]"""
+#print "Middle: ", middle["Main"], len(deck)
 
 
 #print deck, "\n" ,len(deck)
