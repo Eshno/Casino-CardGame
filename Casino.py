@@ -15,6 +15,7 @@ amount = input("Ingrese cantidad de Jugadores: ")
 def Create_Deck(deck):
     """Creates an unshuffled deck"""
     print "Creating deck..."
+    deck = []
     for ct in card_type:    
         for c in cards:
             deck.append([c,ct])
@@ -53,7 +54,7 @@ def Deal_Cards(player,deck):
 # Create Players
 def Create_Players(deck, amount):
     for i in range(1,amount + 1):        
-        players["player" + str(i)] = {"Cards": []}
+        players["player" + str(i)] = {"Cards": [], "Bank": []}
 
 
 
@@ -71,11 +72,14 @@ def Deal(deck, amount,hasBegun):
         hasBegun = False
     
 
+
+    
 Create_Deck(deck)
 deck = Shuffle_Deck(deck)
 #print "Actual Deck" , deck, len(deck)
 Create_Players(deck, amount)
 Deal(deck,amount,hasBegun)
+Play()
 
 """
 for i in range (1,len(players) + 1):
@@ -83,5 +87,14 @@ for i in range (1,len(players) + 1):
     print players["player"+str(i)]"""
 #print "Middle: ", middle["Main"], len(deck)
 
-
 #print deck, "\n" ,len(deck)
+
+
+def Play():
+    for i in range (1,4):
+        if i == 1:
+            print "Middle cards: ", middle["Main"]
+            print "Paired cards : ", middle["Pared"]
+            print "Combined cards: ", middle["Combined"]
+            print "Your Cards: " players["player1"]["Cards"]
+    
