@@ -91,14 +91,6 @@ def Play_Card(player_num,played_card):
         
  
    
-         
-    
-
-def IsPairable():
-    return
-
-def IsCombinable():
-    return
 
 def IsPlayable(played_card):
     for i in middle["Main"]:
@@ -117,36 +109,61 @@ def AnyPossiblePlay(player_num):
                 return True
     return False
 
-def Place_Card(played_card):
+def Place_Card(played_card, player_num):
     middle["Main"].append(played_card)
-    players["player1"]["Cards"].remove(played_card)
+    players["player" + str(player_num)]["Cards"].remove(played_card)
+
+
+def Claim_Card(played_card, claimed_card, player_num):    
+    if played_card[0] == claimed_card[0]:
+        players["player" + str(player_num)]["Bank"].append(played_card)
+        players["player" + str(player_num)]["Bank"].append(claimed_card)
+        players["player" + str(player_num)]["Cards"].remove(played_card)
+        middle["Main"].remove(claimed_card)
+        return
+    print "\n\nNot a valid Claim\n"
+    Play()
+            
+def Pair_Card():
+    return
+    
 
 
 def Play():
     for i in range(1,amount + 1):
         if i == 1:
             print "\nMiddle Cards: ", middle["Main"]            
-            print "Paired Cards: ", middle["Paired"]
-            print "Combined Cards: ", middle["Combined"]
-            print "\nYour Cards: ", players["player1"]["Cards"]
-            if not AnyPossiblePlay(i):
-                print "\n\nThere's no possible play, a card must be placed"
-                print "Select a Card to place: [1 - " + str(len(players["player1"]["Cards"])) + "]"
-                select = input("")  
-                Place_Card(players["player1"]["Cards"][select - 1])
+            print "\nPaired Cards: ", middle["Paired"]
+            print "\nCombined Cards: ", middle["Combined"]
+            print "\n\nYour Cards: ", players["player1"]["Cards"]       
+            
 
+            print "Select a Card: [1 - " + str(len(players["player1"]["Cards"])) + "]"
+            select = input("")            
+            if select > 4 or select < 1:
+                print "\nSelect a valid card\n"
+                Play()
             else:
-
-                print "Select a Card: [1 - " + str(len(players["player1"]["Cards"])) + "]"
-                select = input("")            
-                if select > 4 or select < 1 or not IsPlayable(players["player1"]["Cards"][select - 1]):
-                    print "Please select a Valid Card"
+                print "Selected Card: ", players["player" + str(i)]["Cards"][select - 1]
+                move = input ("Would you like to Place(1) ,Claim(2), Pair(3), Combine(4) or Select another card(0)?")
+                if move == 0:
                     Play()
-                else:
-                    if IsPlayable(players["player1"]["Cards"][select - 1]):
-                        print "Played card: " , players["player1"]["Cards"][select - 1]
-                        Play_Card(i , players["player1"]["Cards"][select - 1])
-                        print "\nPlayer Bank: ",players["player1"]["Bank"], "Middle: ", middle["Main"]
+                if move == 1:
+                    Place_Card(players["player" + str(i)]["Cards"][select - 1], i) #Card / Player Works!
+                    Play() #TesT!
+                if move == 2:
+                    print "\n\nMiddle Cards: ", middle["Main"]
+                    print "Select the Card from the middle you'd like to claim: [1 - " + str(len(middle["Main"])) + "]"
+                    m_select = input ("")
+                    Claim_Card(players["player" + str(i)]["Cards"][select - 1] , middle["Main"][m_select - 1], i)
+                    print "My Bank: " , players["player1"]["Bank"]
+                    Play()
+                if move == 3:
+                    return #Pair
+                if move == 4:
+                    return #Combine
+                
+        #The rest of the players turn
 
     
 
