@@ -9,7 +9,7 @@ players = {}
 middle = {"Main": [], "Paired": [],"Combined": []}
 hasBegun = True
 
-amount = input("Insert players amount: [2 - 4] ")
+amount = input("Insert the players amount: [2 - 4] ")
 ValidMove = False
 
 
@@ -130,8 +130,46 @@ def Is_Over(deck_cards , left_cards):
         return False
     
 def Score():
+    points = 0
+    for i in players:
+        if [10, "Diamonds"] in players[i]["Cards"]:# If has 10 of Diamonds 2+ (Big Casino)
+            players[i]["Points"] += 2
+        if [2, "Spades"] in players[i]["Cards"]:# If has 2 of Spades 1+ (Little Casino)
+            players[i]["Points"] += 1
+        for c in players[i]["Cards"]:# For each ace 1+
+            if c[0] == "Ace":
+                players[i]["Points"] += 1
+        if Most_Cards(len(players[i]["Cards"])):
+            points += 3
+        if Most_Spades():
+            points += 1    
     return
 
+def Most_Cards(card_amount):
+    most = 0
+    if amount == 2:
+        most = max(len(players["player1"]["Cards"], players["player2"]["Cards"]))
+    if amount == 3:
+        most = max(len(players["player1"]["Cards"], players["player2"]["Cards"], players["player3"]["Cards"]))
+    if amount == 4:
+        most = max(len(players["player1"["Cards"]], players["player2"]["Cards"], players["player3"]["Cards"], players["player4"]["Cards"]))
+    for p in players:
+        if card_amount == most_cards:
+            return True
+    return False
+
+def Most_Spades():
+    spade_count = [None]
+    for i in players:
+        spade_count.append(0)
+        for c in players[i]["Cards"]:
+            if c[1] == "Spades":
+                spade_count[int(i[-1])] += 1 # int(i[-1]) = players->[1]<- as an int
+    most_spades = max(spade_count)
+    for p in players:
+        if spade_count[int(p[-1])] == most_spades:
+            return True
+    return False
 
 def Play():
     for i in range(1,amount + 1):
@@ -166,10 +204,11 @@ def Play():
                     print "\n\nMiddle Cards: ", middle["Main"]
                     print "\nPaired Cards: ", middle["Paired"]
                     print "\nCombined Cards: ", middle["Combined"]                    
-                    #if Pair_Claim_Avaiable or Combined_Claim_Avaiable:
-                     #   p_select = input ("Would you like to claim a paired card? Yes(1) / No (0)")
-                      #  if p_select == 1:
-                            #ValidMove = Claim_Pair_Card
+                    #if Pair_Claim_Avaiable or Combined_Claim_Avaiable: Always ask this (commented section)
+                     #   c_select = input ("What kind of claim would you like to do?:-> Normal Claim (1), Paired Claim(2), Combined Claim(3)")
+                      #  if c_select == 1:
+                            #All from below
+                    
                             
                     print "Select the Card from the middle you'd like to claim: [1 - " + str(len(middle["Main"])) + "]"
                     m_select = input ("")

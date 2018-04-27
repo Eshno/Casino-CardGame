@@ -24,9 +24,9 @@ Obtain the highest score.
 ***Score:
 Most Cards = 3 points
 Most Spades = 1 point
-Big Casino (10 diamond) = 2 points 
-Little Casino (2 spade) = 1 point
-Each Ace = 1 point
+Big Casino (10 diamonds) = 2 points #Done
+Little Casino (2 spades) = 1 point #Done
+Each Ace = 1 point #Done
 
 ***Playing:
 You must take a card from the middle, its value must be equal to the value of one of your cards.
