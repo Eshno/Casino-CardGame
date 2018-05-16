@@ -284,20 +284,20 @@ def Score():
     for i in range(1, amount + 1):# i indicates the player number
         if [10, "Diamonds"] in players["player" + str(i)].bank:#Big Casino
             points += 2
-            print "Big Casino: (+2)" , players["player" + str(i)].name
+            #print "Big Casino: (+2)" , players["player" + str(i)].name
         if [2, "Spades"] in players["player" + str(i)].bank:# Little casino
             points += 1
-            print "Little Casino (+1): " , players["player" + str(i)].name
+            #print "Little Casino (+1): " , players["player" + str(i)].name
         for c in players["player" + str(i)].bank:# For each ace 1+
             if c[0] == 1:
                 points += 1
-                print "Each Ace: (+1)" , players["player" + str(i)].name
+                #print "Each Ace: (+1)" , players["player" + str(i)].name
         if Most_Cards(players["player" + str(i)].bank_amt):# Player with most cards
             points += 3
-            print "Most Cards: (+3)" , players["player" + str(i)].name
+            #print "Most Cards: (+3)" , players["player" + str(i)].name
         if Most_Spades(i): # Player with most spades
             points += 1
-            print "Most Spades: (+1)" , players["player" + str(i)].name
+            #print "Most Spades: (+1)" , players["player" + str(i)].name
         players["player" + str(i)].points = points
         points = 0    
     return
