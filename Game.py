@@ -89,11 +89,12 @@ def NewClaim(selected_card, turn):
         for card2 in range(card1, len(Middle.cards) - 1):
             if Middle.cards[card2][-1] in ["Paired", "Combined"]:
                 continue
-            if Middle.cards[card1][0] + Middle.cards[card2][0] == selected_card[0]:
-                if Middle.cards[card1] not in toClaim:
-                    toClaim.append(Middle.cards[card1])
-                if card2 not in toClaim:
-                    toClaim.append(Middle.cards[card2])
+            if Middle.cards[card1][0] not in ["King", "Queen", "Jack"] and selected_card[0] not in ["King", "Queen", "Jack"]:
+                if Middle.cards[card1][0] + Middle.cards[card2][0] == selected_card[0]:
+                    if Middle.cards[card1] not in toClaim:
+                        toClaim.append(Middle.cards[card1])
+                    if card2 not in toClaim:
+                        toClaim.append(Middle.cards[card2])
                     
     #Checks if the value of a Card is equal to the selected card, if so the card will be added in toClaim
     for card in Middle.cards:
@@ -115,6 +116,7 @@ def NewClaim(selected_card, turn):
         Middle.cards.remove(card)
     players["player" + str(turn)].bank.append(selected_card)
     players["player" + str(turn)].cards.remove(selected_card)
+    players["player" + str(turn)].name , ":" ,players["player" + str(turn)].bank
     return True
 
 def Pair_Card(selected_card, turn):
@@ -345,7 +347,8 @@ def Play():
                 break
             
             if opt_select == 2:#Claim a Card
-                ValidMove = Claim_Card(selected_card, turn)
+                #ValidMove = Claim_Card(selected_card, turn)
+                ValidMove = NewClaim(selected_card, turn)
                 if not ValidMove:
                     print "\n\nNot a Valid Move, try again.\n"
                     continue
