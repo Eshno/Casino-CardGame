@@ -82,10 +82,10 @@ def NewClaim(selected_card, turn):
     toClaim = []
     #Checks if the sum of any cards is equal to the selected card, if so the cards will be added in toClaim
     for card1 in range (0, len(Middle.cards) - 2):
-        if Middle.cards[card1][-1] in ["Paired", "Combined"]:
+        if Middle.cards[card1][-1] in ["Paired", "Combined"] or Middle.cards[card1][0] in ["King", "Queen", "Jack"]:
             continue
-        for card2 in range(card1, len(Middle.cards) - 1):
-            if Middle.cards[card2][-1] in ["Paired", "Combined"]:
+        for card2 in range(card1 + 1, len(Middle.cards) - 1):
+            if Middle.cards[card2][-1] in ["Paired", "Combined"] or Middle.cards[card2][0] in ["King", "Queen", "Jack"]:
                 continue
             if Middle.cards[card1][0] + Middle.cards[card2][0] == selected_card[0]:
                 if Middle.cards[card1] not in toClaim:
@@ -94,6 +94,7 @@ def NewClaim(selected_card, turn):
                     toClaim.append(Middle.cards[card2])
                     
     #Checks if the value of a Card is equal to the selected card, if so the card will be added in toClaim
+    #Also checks if there's a combination or pairing of cards.
     for card in Middle.cards:
         if card[0] == selected_card[0] and card not in toClaim:
             if card[-1] in ["Paired", "Combined"]:
@@ -319,7 +320,7 @@ def show_Score():
 """ ---------------------------- Playing ----------------------------"""
 
 def Play():
-    Deck.deck = [] #Test
+    #Deck.deck = [] #Test
     for turn in range(1, amount + 1):
         while True:            
             print "\n\n" ,"-" * 5 + players["player" + str(turn)].show_name + "'s Turn" + "-" * 5, "\n\n"
@@ -344,8 +345,8 @@ def Play():
                 break
             
             if opt_select == 2:#Claim a Card
-                ValidMove = Claim_Card(selected_card, turn)
-                #ValidMove = NewClaim(selected_card, turn)
+                #ValidMove = Claim_Card(selected_card, turn)
+                ValidMove = NewClaim(selected_card, turn)
                 if not ValidMove:
                     print "\n\nNot a Valid Move, try again.\n"
                     continue                
