@@ -76,8 +76,6 @@ def Claim_Card(selected_card, turn):
             players["player" + str(turn)].cards.remove(selected_card)
             print "\n\n",players["player" + str (turn)].show_name, "has Claimed a card\n\n"
             return True
-        
-        
     return False
 
 def NewClaim(selected_card, turn):
@@ -117,6 +115,7 @@ def NewClaim(selected_card, turn):
     players["player" + str(turn)].bank.append(selected_card)
     players["player" + str(turn)].cards.remove(selected_card)
     players["player" + str(turn)].name , ":" ,players["player" + str(turn)].bank
+    print "\n", players["player" + str(turn)].name , "has claimed.\n"
     return True
 
 def Pair_Card(selected_card, turn):
@@ -133,7 +132,7 @@ def Pair_Card(selected_card, turn):
     if selected_card[0] == Middle.cards[toPair - 1][0]:
         if Middle.cards[toPair - 1][-1] == "Paired":
             Middle.cards[toPair - 1].remove("Paired")
-            Middle.cards[toPair - 1].append(selected_card)#[0]
+            Middle.cards[toPair - 1].append(selected_card)
             Middle.cards[toPair - 1].append("Paired")
             players["player" + str (turn)].cards.remove(selected_card)
             print "\n\n",players["player" + str (turn)].show_name, "has Paired a card\n\n"
@@ -174,7 +173,7 @@ def Combine_Card(selected_card, turn):
         if Middle.cards[toComb - 1][-1] == "Combined":
             Middle.cards[toComb - 1].remove("Combined")
             Middle.cards[toComb - 1][0] += selected_card[0]
-            Middle.cards[toComb - 1].append(selected_card)#[0]
+            Middle.cards[toComb - 1].append(selected_card)
             Middle.cards[toComb - 1].append("Combined")
             players["player" + str (turn)].cards.remove(selected_card)
             print "\n\n",players["player" + str (turn)].show_name, "has Combined a card\n\n"
@@ -189,8 +188,7 @@ def Combine_Card(selected_card, turn):
             players["player" + str (turn)].cards.remove(selected_card)
             Middle.cards.remove(Middle.cards[toComb - 1])
             print "\n\n",players["player" + str (turn)].show_name, "has Combined a card\n\n"
-            return True
-            
+            return True            
     return False
     
 
@@ -218,8 +216,7 @@ def isOver():
 def LastTake(turn):
     for p in range (1, amount + 1):        
         if p == turn:            
-            players["player" + str(turn)].tookLast = True        
-
+            players["player" + str(turn)].tookLast = True     
             continue
         players["player" + str(turn)].tookLast = False
     return
@@ -234,8 +231,7 @@ def TakeRemaining():
                         players["player" + str(i)].bank.append(mc[i])
                 else:
                     players["player" + str(i)].bank.append(mc)
-    Middle.cards = []
-    #print players["player" + str(i)].bank
+    Middle.cards = []    
     return
 
 def bank_Cleanup():
@@ -283,7 +279,7 @@ def Most_Spades(player):
             return True
     return False   
 
-def Score():# Prints are for testing
+def Score():
     points = 0
     for i in range(1, amount + 1):# i indicates the player number
         if [10, "Diamonds"] in players["player" + str(i)].bank:#Big Casino
@@ -331,13 +327,15 @@ def Play():
             Middle.show_middle()
             print "\n\nSelect a Card from your Hand"
             players["player" + str(turn)].show_Cards()
-            card_select = input("")            
+            card_select = input("")
+            if card_select > len(players["player" + str(turn)].cards) or <= 0:
+                continue
             selected_card = players["player" + str(turn)].cards[card_select - 1]
             if selected_card[0] == 1:
                 print "Your Card: " , "Ace of", selected_card[1] , "\n"
             else:
                 print "Your Card: " , selected_card[0], "of", selected_card[1] , "\n"            
-            opt_select = input("What would you like to do?\nPlace Card [1] - Claim Card [2] - Pair Card [3] - Combine Card [4] - Select another Card [0]")
+            opt_select = input("What would you like to do?\nPlace Card [1] - Claim Card [2] - Pair Card [3] - Combine Card [4] - Select another Card [0]")            
             if opt_select > 4 or opt_select < 0:
                 print "\n\nInvalid Option, try again\n"
                 continue
@@ -351,8 +349,7 @@ def Play():
                 ValidMove = NewClaim(selected_card, turn)
                 if not ValidMove:
                     print "\n\nNot a Valid Move, try again.\n"
-                    continue
-                ValidMove = False
+                    continue                
                 print "Bank: ", players["player" + str(turn)].bank #Test
                 LastTake(turn)                
                 break
@@ -361,16 +358,14 @@ def Play():
                 ValidMove = Pair_Card(selected_card, turn)
                 if not ValidMove:
                     print "\n\nNot a Valid Move, try again.\n"
-                    continue
-                ValidMove = False
+                    continue                
                 break
             
             if opt_select == 4:#Combine a Card                
                 ValidMove = Combine_Card(selected_card, turn)
                 if not ValidMove:
                     print "\n\nNot a Valid Move, try again.\n"
-                    continue
-                ValidMove = False
+                    continue                
                 break
             
             if opt_select <= 0 or opt_select > 4:
@@ -390,10 +385,10 @@ def Play():
         newGame = None        
         while newGame != "1" or newGame != "2":# Ask to Start a new Game or end
             newGame = raw_input("\nWould you like to start a new game? Yes (1) / No(2)")
-            if newGame == 1:
+            if newGame == "1":
                 bank_Cleanup()
                 StartUp()
-            elif newGame == 2:
+            elif newGame == "2":
                 print "\n Thanks for playing"
                 return        
             
