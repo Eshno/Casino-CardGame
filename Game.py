@@ -328,7 +328,7 @@ def Play():
             print "\n\nSelect a Card from your Hand"
             players["player" + str(turn)].show_Cards()
             card_select = input("")
-            if card_select > len(players["player" + str(turn)].cards) or <= 0:
+            if card_select > len(players["player" + str(turn)].cards) or card_select <= 0:
                 continue
             selected_card = players["player" + str(turn)].cards[card_select - 1]
             if selected_card[0] == 1:
