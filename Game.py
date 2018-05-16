@@ -345,8 +345,8 @@ def Play():
                 break
             
             if opt_select == 2:#Claim a Card
-                #ValidMove = Claim_Card(selected_card, turn)
-                ValidMove = NewClaim(selected_card, turn)
+                ValidMove = Claim_Card(selected_card, turn)
+                #ValidMove = NewClaim(selected_card, turn)
                 if not ValidMove:
                     print "\n\nNot a Valid Move, try again.\n"
                     continue                
