@@ -3,7 +3,7 @@ import random
 
 
 class Deck:    
-    cards = ["Ace",2,3,4,5,6,7,8,9,10,"Jack", "Queen" ,"King"]
+    cards = [1,2,3,4,5,6,7,8,9,10,"Jack", "Queen" ,"King"]
     card_type = ["Diamonds", "Spades", "Hearts", "Clubs"]
     deck = []
 
@@ -12,12 +12,10 @@ class Deck:
     
     @classmethod
     def Create_Deck(cls, deck):
-        """Generates a Deck"""
-        #print "Generating Deck..."        
+        """Generates a Deck"""        
         for ct in cls.card_type:    
             for c in cls.cards:
-                deck.append([c,ct])
-        #print "Deck Generated."
+                deck.append([c,ct])        
         cls.deck = deck
         return deck
     
@@ -34,6 +32,7 @@ class Deck:
     @classmethod
     def deal_card(cls, obj):        
         return cls.deck.pop(0)
+    
         
         
 
