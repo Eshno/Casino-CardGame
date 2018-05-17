@@ -29,5 +29,6 @@ who claimed last will automatically claim the cards left in the middle.
 After this, the Score is going to be set and showed. Then, you may decide to continue playing or to end
 the game right away.
 
-If you chooste to continue playing, the deck will be created again, shuffled and dealed to every player and the middle.
+If you choose to continue playing, the deck will be created again, shuffled and dealed to every player and the middle.
+Players won't keep the cards that they claimed in the last game.
 Players will keep their Score from the previous game.
