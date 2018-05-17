@@ -7,7 +7,7 @@ class Middle:
     @classmethod
     def place_card(cls, card):
         cls.cards.append(card)
-        cls.cards.remove(card)  
+          
         
 
     @classmethod
