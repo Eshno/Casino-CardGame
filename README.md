@@ -13,11 +13,11 @@ In every turn, you must choose the current player card from his hand depending o
 in the middle, then you must choose what do you want to do with that card.
 
 You have the next options:
-Place the Card
-Claim a Card
-Pair the Card
-Combine the Card
-Select another Card
+Place the Card -
+Claim a Card - 
+Pair the Card -
+Combine the Card -
+Select another Card.
 
 Everytime a player runs out of Cards, its cards will be refilled as long as there are
 cards remaining in the main deck (at the moment there's nothing being showed to keep 
