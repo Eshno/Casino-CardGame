@@ -298,7 +298,7 @@ def Score():
         if Most_Spades(i): # Player with most spades
             points += 1
             #print "Most Spades: (+1)" , players["player" + str(i)].name
-        players["player" + str(i)].points = points
+        players["player" + str(i)].points += points
         points = 0    
     return
 
