@@ -6,8 +6,11 @@ https://github.com/python/cpython
 ***Ignorar los archivos que llevan Updated...***
 
 Game.py es el principal.
+
 Deck.py genera las cartas.
+
 Middle.py es donde se colocan las cartas.
+
 Player.py es el jugador.
 
 ***Working on Updates***
