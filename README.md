@@ -3,6 +3,15 @@
 Using random.py from the cpython Library.
 https://github.com/python/cpython
 
+***Ignorar los archivos que llevan Updated...***
+
+Game.py es el principal.
+Deck.py genera las cartas.
+Middle.py es donde se colocan las cartas.
+Player.py es el jugador.
+
+***Working on Updates***
+
 How to Play:
 
 You first start off by introducing the players amount (2 to 4).
