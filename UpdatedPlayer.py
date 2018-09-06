@@ -1,45 +1,44 @@
 #from UpdatedDeck import Deck
-from Middle import Middle
+from UpdatedMiddle import Middle
 
 class Player:
-    def __init__(self, name,cards, bank, points, tookLast):
+    def __init__(self, name):
         self.name = name
         self.cards = []
         self.bank = []
         self.points = 0
-        self.tookLast = tookLast
-
+        self.tookLast = False
 
     @property
-    def show_points(self):
+    def Show_Player_Points(self):
         return '{} points: {}'.format(self.name , self.points)
 
     @property
-    def show_name(self):
+    def Show_Player_Name(self):
         return '{}'.format(self.name)
 
-    def bank_amt(self):
+    def Bank_Cards_Amount(self):
         return len(self.bank)
 
-    def __len__(self):
+    def Cards_Left(self):
         return len(self)
 
-    def hasNocards(self):
+    def hasCards(self):
         return len(self.cards) == 0
 
-    def CleanBank(self):
+    def Clean_Player_Bank(self):
         self.bank = []
+    
+    def Get_Card(self, card):        
+        self.cards.append(card)
+            
 
-    def Refill(self):
-        return
-
-
-    def show_Cards(self):
+    def Show_Player_Cards(self):
         print "Your Hand: \n"
         count = 1
-        for i in self.cards:
-            if i[0] == 1:
-                print "((" + str(count) + "))",  "Ace of", i[1] , "|" ,
+        for card in self.cards:
+            if card[0] == 1:
+                print "((" + str(count) + "))",  "Ace of", card[1] , "|" ,
             else:
-                print "((" + str(count) + "))",  i[0], "of", i[1] , "|" ,
+                print "((" + str(count) + "))",  card[0], "of", card[1] , "|" ,
             count +=1
