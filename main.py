@@ -67,11 +67,10 @@ def createPlayers(amount):
 
 deck = Deck()
 errorHandle = Error()
-deck.generateAndShuffle()
+deck.generate()
 playerAmount = 4
 players = createPlayers(playerAmount)
 
-for player in players:
-    print player.__dict__
-
-print deck.deal().__dict__
+for card in deck.cards:
+    print card.__dict__
+print len(deck.cards)
