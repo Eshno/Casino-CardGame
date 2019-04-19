@@ -1,4 +1,4 @@
-import random
+from random import randint
 
 class Card:
     def __init__(self, type, number):
@@ -9,28 +9,30 @@ class Card:
         print self.type, self.number
 
 class Deck:
-    cards = []
     types = ['spades', 'diamonds', 'hearts', 'clubs']
+
+    def __init__(self):
+        self.cards = []
 
     def generate(self):
         for type in Deck.types:
             for number in range(1, 14):
                 newCard = Card(type, number)
-                Deck.cards.append(newCard)
+                self.cards.append(newCard)
     
     def shuffle(self):
         shuffledDeck = []
-        for i in range(0,53):
-            shuffledCard = random.choice(Deck.cards)
+        for i in range(1,53):
+            shuffledCard = self.cards.pop(randint(0, len(self.cards) -1))
             shuffledDeck.append(shuffledCard)
-        Deck.cards = shuffledDeck
+        self.cards = shuffledDeck
     
     def generateAndShuffle(self):
         self.generate()
         self.shuffle()
     
     def deal(self):
-        dealedCard = Deck.cards.pop(0)
+        dealedCard = self.cards.pop(0)
         return dealedCard
             
 class Player:
@@ -68,8 +70,9 @@ def createPlayers(amount):
 deck = Deck()
 errorHandle = Error()
 deck.generate()
-playerAmount = 4
-players = createPlayers(playerAmount)
+deck.shuffle()
+# playerAmount = 4
+# players = createPlayers(playerAmount)
 
 for card in deck.cards:
     print card.__dict__
