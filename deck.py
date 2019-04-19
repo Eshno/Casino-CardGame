@@ -1,4 +1,7 @@
-class Deck:
+from random import randint
+from card import Card
+
+class Deck: 
     types = ['spades', 'diamonds', 'hearts', 'clubs']
 
     def __init__(self):
