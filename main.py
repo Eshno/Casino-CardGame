@@ -32,7 +32,7 @@ class Deck:
         self.shuffle()
     
     def deal(self):
-        dealedCard = self.cards.pop(0)
+        dealedCard = self.cards.pop()
         return dealedCard
             
 class Player:
@@ -48,6 +48,12 @@ class Player:
     def receiveCard(self, card):
         self.cards.append(card)
 
+class Middle:
+
+    def __init__(self):
+        self.cards = []
+
+
 class Error:
     errorMessage = ''
     def isPlayerAmountValid(self, amount):
@@ -56,24 +62,45 @@ class Error:
             Error.errorMessage = 'Player Amount is Not Valid'
         return isValid
 
-def createPlayers(amount):
-    if not errorHandle.isPlayerAmountValid(amount):
-        print errorHandle.errorMessage
-        return
-    availablePlayerNames = ['Rose', 'Olive', 'Jorge', 'Maria']
-    players = []
-    for i in range(0, 4): 
-        players.append(Player(availablePlayerNames[i]))
-    return players
+class Game:
+    def __init__(self):
+        self.deck = Deck()
+        self.players = []
+    
+    def prepareDeck(self):
+        self.deck.generateAndShuffle()
+    
+    def preparePlayers(self):
+        availablePlayerNames = ['Rose', 'Olive', 'Jorge', 'Maria']
+        for i in range(0,4):
+            self.players.append(Player(availablePlayerNames[i]))
+    
+    def startUpDeal(self):
+        for player in self.players:
+            for i in range(0,7):
+                card = self.deck.deal()
+                player.receiveCard(card)
 
 
-deck = Deck()
+# def createPlayers(amount):
+#     if not errorHandle.isPlayerAmountValid(amount):
+#         print errorHandle.errorMessage
+#         return
+#     availablePlayerNames = ['Rose', 'Olive', 'Jorge', 'Maria']
+#     players = []
+#     for i in range(0, 4): 
+#         players.append(Player(availablePlayerNames[i]))
+#     return players
+
 errorHandle = Error()
-deck.generate()
-deck.shuffle()
-# playerAmount = 4
-# players = createPlayers(playerAmount)
-
-for card in deck.cards:
-    print card.__dict__
-print len(deck.cards)
+game = Game()
+game.prepareDeck()
+game.preparePlayers()
+game.startUpDeal()
+# print game.deck.cards
+# for card in game.deck.cards:
+#     print card.__dict__
+# for player in game.players:
+#     print player.name
+#     for card in player.cards:
+#         print card.__dict__
