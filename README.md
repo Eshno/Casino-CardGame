@@ -5,6 +5,12 @@ https://github.com/python/cpython
 
 ***Working on Updates***
 
+***Still missing on the new Version:***
+- Actual Gameplay (Turn System)
+- Score System
+
+The playability will remain almost the same as the OldVersion (The OldVersion file just remains there for easier reference on some logics)
+
 How to Play:
 
 You first start off by introducing the players amount (2 to 4).
