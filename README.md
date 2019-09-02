@@ -1,42 +1,55 @@
 # Casino-CardGame
 
-Using random.py from the cpython Library.
-https://github.com/python/cpython
+# Dealing
 
-***Working on Updates***
+Can be played from 2 to 4 players.
 
-***Still missing on the new Version:***
-- Actual Gameplay (Turn System)
-- Score System
+Each player starts with 4 cards, this also includes the middle.
 
-The playability will remain almost the same as the OldVersion (The OldVersion file just remains there for easier reference on some logics)
+# Objective: 
 
-How to Play:
+Earn the biggest amount of points
 
-You first start off by introducing the players amount (2 to 4).
+Cards                   Points
+Most Cards              3
+Most Spades             1
+Big Casino (10 Diamond) 2
+Little Casino (2 Spade) 1
+Each Ace                1
 
-After the amount of players is introduced, you'll immediatly start to play.
+# Gameplay
 
-In every turn, you must choose the current player card from his hand depending on what's 
-in the middle, then you must choose what do you want to do with that card.
+Use your cards to claim cards from the middle.
 
-You have the next options:
-Place the Card -
-Claim a Card - 
-Pair the Card -
-Combine the Card -
-Select another Card.
+You can claim cards from the middle if your card(s) matches the value from the one in the middle.
+Say if there's a 4 and a 3 in the middle, their sum will result in 7, so if you have a 7 you can claim both.
+If there's a 7 in the middle, you can claim it by using a 7.
 
-Everytime a player runs out of Cards, its cards will be refilled as long as there are
-cards remaining in the main deck (at the moment there's nothing being showed to keep 
-track of how many cards are remaining).
+If you're unable to claim any card, you must place a card from your hand into the middle.
 
-When all the players run out of cards and there are no more cards in the main deck, then the player
-who claimed last will automatically claim the cards left in the middle.
+# Combinations
 
-After this, the Score is going to be set and showed. Then, you may decide to continue playing or to end
-the game right away.
+*Build / Sum Combination*
 
-If you choose to continue playing, the deck will be created again, shuffled and dealed to every player and the middle.
-Players won't keep the cards that they claimed in the last game.
-Players will keep their Score from the previous game.
+You can combine a card from your hand with another one in the middle, this will result in the values 
+of both cards sum. Say if you combine a 6 from the middle with a 2 from your hand, you'll need an 8 to claim it.
+
+Build combination cannot exceed the highest card value (which would be 13).
+
+The Kings, Queens and Jokers cannot be part of any Build Combination
+
+*Call / Pair Combination*
+
+You can combine cards from your hand into the middle that have the same value. Say if there's a 9 in the middle and you also
+have a 9 in your hand, you can combine them, to claim them you'll need a card with the value of 9.
+
+You can also use the Build combination to create a Call Combination within the same turn.
+Say if there's a 7 and a 5 in the middle and you have a 2 in your hand, you can Build the 5 and the 2 so their value
+would be 7. You can either leave them like that or immediately 'Call Combine' these two cards with the 7, so in order to claim it
+you will need a 7.
+
+When all players have run out of cards, the will be refilled with 4 cards again. 
+The round will be over once the deck and each of the player's hand is empty.
+The last player that claimed a card will automatically claim the rest of the cards in the middle.
+
+
