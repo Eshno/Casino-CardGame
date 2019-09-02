@@ -10,18 +10,19 @@ class Game:
         self.deck = Deck()
         self.middle = Middle()
         self.players = []
+        self.startGame()
     
     def prepareDeck(self):
         self.deck.generateAndShuffle()
     
-    def preparePlayers(self):
+    def createPlayers(self):
         availablePlayerNames = ['Rose', 'Olive', 'Jorge', 'Maria']
         for i in range(0,4):
             self.players.append(Player(availablePlayerNames[i]))
     
-    def startUpDealToPlayers(self):
+    def preparePlayerCards(self):
         for player in self.players:
-            for i in range(0,7):
+            for i in range(0,4):
                 card = self.deck.deal()
                 player.receiveCard(card)
     
@@ -29,12 +30,14 @@ class Game:
         for i in range (0,4): 
             card = self.deck.deal()
             self.middle.receiveCard(card)
+    
+    def startGame(self):
+        self.prepareDeck()
+        self.createPlayers()
+        self.preparePlayerCards()
+        self.prepareMiddleCards()
 
 game = Game()
-game.prepareDeck()
-game.preparePlayers()
-game.startUpDealToPlayers()
-game.prepareMiddleCards()
 
 # for card in game.middle.cards:
 #     print card.__dict__
