@@ -4,7 +4,7 @@ class Middle:
     
     def showMiddle(self):
         for card in self.cards:
-            print card.name, card.type, ' | '
+            print(card.name, card.type, ' | ')
     
     def receiveCard(self, card):
         self.cards.append(card)

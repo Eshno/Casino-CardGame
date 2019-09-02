@@ -6,7 +6,7 @@ class Player:
     
     def showCards(self):
         for card in self.cards:
-            print card.type , card.number
+            print (card.type , card.number)
     
     def receiveCard(self, card):
         self.cards.append(card)

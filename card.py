@@ -5,4 +5,4 @@ class Card:
         self.number = number
 
     def show(self):
-        print self.type, self.number
+        print (self.type, self.number)
